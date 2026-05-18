@@ -2,8 +2,6 @@
 
 See your contacts' local time directly inside WhatsApp Web.
 
-![TimeTag for WhatsApp demo](demo.png)
-
 ## What it does
 
 - Automatically detects each contact's likely timezone using available contact metadata
