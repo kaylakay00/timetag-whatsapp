@@ -49,3 +49,167 @@ html[data-color-mode="dark"] .watz-time-tag {
   color: #00d9aa;
   border-color: rgba(0, 168, 132, 0.3);
 }
+
+/* ============================================================
+ * Timezone Picker Modal
+ * ============================================================ */
+
+.watz-picker-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: watz-fade-in 0.12s ease;
+}
+
+@keyframes watz-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.watz-picker-modal {
+  width: 340px;
+  max-height: 480px;
+  background: #1f2c33;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #e9edef;
+}
+
+.watz-picker-header {
+  padding: 16px 16px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.watz-picker-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.watz-picker-title strong {
+  color: #00a884;
+}
+
+.watz-picker-current {
+  font-size: 11px;
+  color: #8696a0;
+  margin-top: 4px;
+}
+
+.watz-picker-search-wrap {
+  padding: 10px 16px;
+}
+
+.watz-picker-search {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #2a3942;
+  color: #e9edef;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+
+.watz-picker-search::placeholder {
+  color: #667781;
+}
+
+.watz-picker-search:focus {
+  border-color: #00a884;
+}
+
+.watz-picker-results {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 8px;
+  max-height: 260px;
+}
+
+.watz-picker-results::-webkit-scrollbar {
+  width: 4px;
+}
+
+.watz-picker-results::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+.watz-picker-empty {
+  text-align: center;
+  padding: 20px;
+  color: #667781;
+  font-size: 12px;
+}
+
+.watz-picker-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.watz-picker-item:hover,
+.watz-picker-item.active {
+  background: rgba(0, 168, 132, 0.15);
+}
+
+.watz-picker-item-city {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.watz-picker-item-tz {
+  font-size: 11px;
+  color: #00a884;
+  font-family: "SF Mono", "Fira Code", monospace;
+}
+
+.watz-picker-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 10px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.watz-picker-btn-close,
+.watz-picker-btn-clear {
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.watz-picker-btn-close {
+  background: transparent;
+  color: #8696a0;
+}
+
+.watz-picker-btn-close:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.watz-picker-btn-clear {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  margin-right: auto;
+}
+
+.watz-picker-btn-clear:hover {
+  background: rgba(239, 68, 68, 0.28);
+}

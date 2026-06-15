@@ -163,3 +163,36 @@ function getTimezoneLabel(timezone) {
     return "";
   }
 }
+
+/**
+ * Get GMT offset string, e.g. "+8:00", "-5:00"
+ */
+function getGMTOffset(timezone) {
+  try {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: timezone,
+      timeZoneName: "longOffset",
+    }).formatToParts(new Date());
+    const tzPart = parts.find((p) => p.type === "timeZoneName");
+    return tzPart ? tzPart.value.replace("GMT", "") : "";
+  } catch (e) {
+    return "";
+  }
+}
+
+/**
+ * Check if a timezone is currently observing DST
+ */
+function isDST(timezone) {
+  try {
+    const now = new Date();
+    const jan = new Date(now.getFullYear(), 0, 1);
+    const offsetNow = now.toLocaleString("en-US", { timeZone: timezone, timeZoneName: "short" });
+    const offsetJan = jan.toLocaleString("en-US", { timeZone: timezone, timeZoneName: "short" });
+    // Compare offsets: if different, DST is active (rough heuristic)
+    const extract = (s) => s.match(/GMT[+\-\d:]+/)?.[0] || "";
+    return extract(offsetNow) !== extract(offsetJan);
+  } catch (e) {
+    return false;
+  }
+}
